@@ -19,7 +19,14 @@ This project is an ETL (Extract, Transform, Load) process built using SQL Server
 
 * ETL/ → SSIS packages
 * ETL.sln → Solution file
+## 📊 Data Flow (Sales)
+![Data Flow Sales](images/data_flow_sales.png)
 
+## 📊 Data Flow
+![Data Flow](images/data_flow.png)
+
+## 🔄 Control Flow
+![Control Flow](images/control_flow.png)
 ## 🚀 How to Run
 
 1. Open the project in Visual Studio
