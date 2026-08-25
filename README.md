@@ -1,75 +1,19 @@
 # Sales ETL Pipeline with SQL Server Integration Services
 
-A portfolio project that demonstrates an **Extract, Transform, Load (ETL)** workflow built with SQL Server Integration Services (SSIS). The solution contains SSIS packages, a Visual Studio solution, project parameters, and data-flow/control-flow diagrams.
+This portfolio project demonstrates a batch ETL workflow using SSIS packages, a Visual Studio solution, project parameters, and data-flow/control-flow diagrams. It is a reproducible design/demo, not a deployed production catalog.
 
-## Objective
+## Package inventory
 
-The project models a typical batch-integration workflow: extract records from a source, apply cleaning and formatting transformations, and load the resulting data into a destination SQL Server database for downstream reporting or analysis.
+The `ETL/` directory contains the `.dtsx` packages, `ETL.dtproj`, project parameters, and the SQL Server database project. The existing package filename `SSISpRroject.dtsx` is retained to avoid breaking solution references; rename it only together with matching references in the SSIS project.
 
-## Architecture
+## Local setup
 
-```mermaid
-flowchart LR
-    Source[Source data] --> Extract[SSIS extraction]
-    Extract --> Transform[Cleaning and formatting]
-    Transform --> Load[Destination SQL Server]
-    Load --> Warehouse[Analytics-ready tables]
-```
+Use Windows with Visual Studio and the SQL Server Integration Services Projects extension. Open `ETL.sln`, configure source and destination connection managers, review `Project.params`, and confirm the destination schema exists before execution. No credentials belong in Git.
 
-## Technology Stack
+## Validation and reruns
 
-- SQL Server
-- SQL Server Integration Services (SSIS)
-- Visual Studio with the SSIS extension
-- `.dtsx` packages and project parameters
-
-## Repository Structure
-
-```text
-ETL/
-├── ETL.sln
-├── ETL/
-│   ├── ETL.dtproj
-│   ├── Project.params
-│   ├── DimCus.dtsx
-│   ├── Fact.dtsx
-│   ├── Saleman.dtsx
-│   └── SSISpRroject.dtsx
-├── images/
-│   ├── control flow.png
-│   ├── Data flow.png
-│   └── Data flow Sales.png
-└── README.md
-```
-
-## Workflow
-
-The packages are organized around source extraction, transformation, and loading steps. The included diagrams document the control flow and data-flow design. The exact source and destination connection managers must be configured for the local SQL Server environment before execution.
-
-## Run the Project
-
-1. Install SQL Server and Visual Studio with the SQL Server Integration Services Projects extension.
-2. Clone the repository:
-
-   ```bash
-   git clone https://github.com/Fatoomnoour/ETL.git
-   cd ETL
-   ```
-
-3. Open `ETL.sln` in Visual Studio.
-4. Review and update the project parameters and connection managers.
-5. Confirm that the destination database and required tables are available.
-6. Execute the required `.dtsx` package from Visual Studio or deploy it to an SSIS catalog.
-7. Validate row counts, rejected records, and destination-table results after execution.
-
-## Data Quality and Validation
-
-Before describing this project as production-ready, document the source schema, target schema, expected row counts, error-output handling, and rerun behavior. A robust extension should include package logging, data-quality checks, failure notifications, and an idempotent loading strategy.
+Before running a package, record source and destination schemas and expected row counts. After each package, capture inserted, rejected, and error-row counts. For a production extension, add package logging, error outputs, notifications, and an idempotent load key or staging-and-merge strategy so reruns cannot duplicate facts. A sample database is intentionally not committed; provide a sanitized local fixture before claiming end-to-end reproducibility.
 
 ## Limitations
 
-The repository provides the SSIS solution and diagrams but does not currently document a public sample database, connection configuration, automated validation results, or a deployed SSIS catalog. It should therefore be presented as a reproducible design/demo project rather than a verified production deployment.
-
-## Author
-
-**Fatma Nour** — [GitHub](https://github.com/Fatoomnoour)
+The repository does not include a public sample database, deployed SSIS catalog, automated package execution, or a verified cloud deployment.
