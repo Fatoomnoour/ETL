@@ -1,19 +1,31 @@
-# Sales ETL Pipeline with SQL Server Integration Services
+# Sales ETL Pipeline
 
-This portfolio project demonstrates a batch ETL workflow using SSIS packages, a Visual Studio solution, project parameters, and data-flow/control-flow diagrams. It is a reproducible design/demo, not a deployed production catalog.
+> A SQL Server Integration Services demo with packages, project parameters, and data-flow diagrams.
 
-## Package inventory
+![Status](https://img.shields.io/badge/status-design/demo-project---no-production-catalog-included-blue)
 
-The `ETL/` directory contains the `.dtsx` packages, `ETL.dtproj`, project parameters, and the SQL Server database project. The existing package filename `SSISpRroject.dtsx` is retained to avoid breaking solution references; rename it only together with matching references in the SSIS project.
+## What it does
 
-## Local setup
+**Source → SSIS extraction → cleaning/transformation → SQL Server → analytics tables**
 
-Use Windows with Visual Studio and the SQL Server Integration Services Projects extension. Open `ETL.sln`, configure source and destination connection managers, review `Project.params`, and confirm the destination schema exists before execution. No credentials belong in Git.
+## Tech stack
 
-## Validation and reruns
+`SSIS · SQL Server · Visual Studio · DTSX`
 
-Before running a package, record source and destination schemas and expected row counts. After each package, capture inserted, rejected, and error-row counts. For a production extension, add package logging, error outputs, notifications, and an idempotent load key or staging-and-merge strategy so reruns cannot duplicate facts. A sample database is intentionally not committed; provide a sanitized local fixture before claiming end-to-end reproducibility.
+## Quick start
 
-## Limitations
+```bash
+Open ETL.sln in Visual Studio with the SSIS Projects extension. Configure connection managers, then run the required package.
+```
 
-The repository does not include a public sample database, deployed SSIS catalog, automated package execution, or a verified cloud deployment.
+## Project layout
+
+The repository keeps the implementation, configuration, and supporting assets close to the workflow so the project is easy to inspect and reproduce. See the source folders and files for the detailed implementation.
+
+## Important notes
+
+**Status:** Design/demo project — no production catalog included. Use sample or synthetic data only unless the project documentation explicitly states otherwise. Review the limitations and security notes before any deployment or real-world use.
+
+## License
+
+See the repository license file when present. Contributions and improvements should keep the existing attribution and project history clear.
